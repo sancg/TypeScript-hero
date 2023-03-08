@@ -42,7 +42,7 @@ let price = [20, 100, 51]; //This would be a type => number[]
 
 ##### Any
 
-The Any operator is exclusive of [[TypeScript]].
+The Any operator is exclusive of _TypeScript_.
 
 - Use cases goes from dealing with Unstructured libraries or migrations.
 - Convert `Any` into an understanding type with the `as operator`:
@@ -55,3 +55,17 @@ let newArray = foo as number[];
 newArray = newArray.filter((item) => item > 3);
 console.log({ newArray });
 ```
+
+##### Literal types
+
+A type-reduction available for a variable:
+
+```Typescript
+type Sizes = 'S' | 'M' | 'L' | 'XL';
+let shirtSize: Sizes;
+shirtSize = 'XL';
+
+console.log(shirtSize);
+```
+
+`What difference are between ENUM and Literal types?`
