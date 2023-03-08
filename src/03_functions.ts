@@ -1,6 +1,5 @@
+import { Size } from './products/product.model';
 (() => {
-  type Size = 'S' | 'M' | 'L' | 'XL';
-
   function createProductToJSON(
     title: string,
     createdAt: Date,
