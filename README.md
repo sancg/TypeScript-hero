@@ -15,7 +15,7 @@ In this repo you will find step by step learning on typos. As and entry-level le
   - Objects as types ✨
   - Modules 🍃
 
-## Progress
+## Areas of interest: Basic topics 🌱
 
 All types must be written on `lowercase` except for `Object interface`.
 
@@ -71,7 +71,9 @@ console.log(shirtSize);
 `What difference are between ENUM and Literal types?`
 
 #### Functions
+
 It defines the arguments and its respective types. These args must be passed just as its definition. IE:
+
 ```Typescript
 type Size = 'S' | 'M' | 'L' | 'XL';
 
@@ -79,7 +81,7 @@ function createProductToJSON(
     title: string,
     createdAt: Date,
     size: Size,
-    stock?: number // What the sign '?' means? 
+    stock?: number // What the sign '?' means?
 ) {
     return { title, createdAt, size, stock };
 }
