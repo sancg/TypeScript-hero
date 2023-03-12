@@ -1,3 +1,9 @@
-import { createProduct } from './nullish';
+import { parseStr } from './overload';
 
-console.log(createProduct('001', 't-shirt'));
+console.log(parseStr);
+
+// Overload function ✅
+const is_arr = parseStr('Overpower');
+let overload = is_arr.map((item) => item.concat('🌱'));
+
+console.log(overload);
