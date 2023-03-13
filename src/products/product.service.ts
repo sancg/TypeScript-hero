@@ -1,6 +1,11 @@
+/**
+ * Refactoring using Complex structures
+ * Methods like CRUD
+ * .service <name_convention> relates to the Methods or treatment of Data
+ */
+
 import { Product } from './product.model';
 
-// .service <name_convention> relates to the Methods or treatment of Data
 const products: Product[] = [];
 const addProduct = (data: Product) => {
   products.push(data);
