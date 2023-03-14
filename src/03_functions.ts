@@ -1,4 +1,4 @@
-import { Size } from './products/product.model';
+import { Size } from './app/products/product.model';
 (() => {
   function createProductToJSON(
     title: string,

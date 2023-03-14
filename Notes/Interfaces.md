@@ -25,3 +25,31 @@ interface Product {
   size?: Sizes;
 }
 ```
+
+### Best practices
+
+If and interface required nested type-structures, it would had an athomic pattern, separeting each type according to its utility.
+
+```typescript
+/* You have a Product interface, but you want to introduce a category type*/
+interface Product {
+  id: string | number;
+  title: string;
+  size?: Sizes;
+  // ❌ It has its own set of types, thus its better to separete the logic.
+  category: {
+    id: string | number;
+    name: string;
+  };
+}
+
+// ✅ Good practice agter refactoring
+interface Category {
+  id: string | number;
+  name: string;
+}
+
+interface Product {
+  category: Category;
+}
+```
