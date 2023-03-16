@@ -1,5 +1,4 @@
 /* Refactoring using Complex structures */
-
 import { Category } from '../categories/category.model';
 import { BaseModel } from '../model/baseModel.model';
 
