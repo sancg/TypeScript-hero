@@ -4,25 +4,35 @@
  * .service <name_convention> relates to the Methods or treatment of Data
  */
 
-import { Product, UpdateProductDTO } from './product.model';
+import { faker } from '@faker-js/faker';
+import { CreateProductDTO, UpdateProductDTO } from './product.dto';
+import { Product } from './product.model';
 
 const products: Product[] = [];
-const addProduct = (data: Product) => {
-  products.push(data);
+
+const addProduct = (data: CreateProductDTO) => {
+  // Adding Database logic or given values by default
+  const newProduct = {
+    id: faker.datatype.uuid(),
+    createdAt: faker.date.past(),
+    updatedAt: new Date(),
+    ...data,
+  };
+  products.push(newProduct);
 };
 
 // Boilerplate for CRUD
-export const updateProduct = (
+const updateProduct = (
   id: string | number,
   data: UpdateProductDTO
-): Product => {
-  products.find((prod, rep) => {
+): Product | undefined => {
+  return products.find((prod, rep) => {
     if (prod.id === id) {
       console.log(JSON.stringify(prod, null, 2));
-      const updateProduct = { ...data, prod };
-      products.splice(rep, 1, updateProduct);
+      const productResult = { ...prod, ...data };
+      products.splice(rep, 1, productResult);
       console.log(data);
-      return updateProduct;
+      return productResult;
     }
   });
 };
@@ -35,4 +45,4 @@ const inStock = (): number => {
   return products.reduce((prev, current) => prev + current.stock, 0);
 };
 
-export { products, addProduct, inStock };
+export { products, addProduct, updateProduct, inStock };

@@ -15,5 +15,4 @@ interface Product extends BaseModel {
   size?: Size;
 }
 
-interface UpdateProductDTO extends Partial<Product> {}
-export { Size, Product, UpdateProductDTO };
+export { Size, Product };
