@@ -5,7 +5,11 @@
  */
 
 import { faker } from '@faker-js/faker';
-import { CreateProductDTO, UpdateProductDTO } from './product.dto';
+import {
+  CreateProductDTO,
+  FindProductDTO,
+  UpdateProductDTO,
+} from './product.dto';
 import { Product } from './product.model';
 
 const products: Product[] = [];
@@ -22,19 +26,25 @@ const addProduct = (data: CreateProductDTO) => {
 };
 
 // Boilerplate for CRUD
+// Refactoring the updateProduct
 const updateProduct = (
   id: string | number,
-  data: UpdateProductDTO
-): Product | undefined => {
-  return products.find((prod, rep) => {
-    if (prod.id === id) {
-      console.log(JSON.stringify(prod, null, 2));
-      const productResult = { ...prod, ...data };
-      products.splice(rep, 1, productResult);
-      console.log(data);
-      return productResult;
-    }
-  });
+  change: UpdateProductDTO
+): Product | string => {
+  const index = products.findIndex((item) => item.id === id);
+  if (index === -1) return 'Product Not found';
+  const prevProduct = products[index];
+  products[index] = {
+    ...prevProduct,
+    ...change,
+  };
+  console.log(JSON.stringify(products, null, 2));
+  return products[index];
+};
+
+// Find items within the Product[]
+const findProduct = (data: FindProductDTO): Product[] => {
+  return [];
 };
 
 const deleteProduct = (data: Product) => {
@@ -45,4 +55,4 @@ const inStock = (): number => {
   return products.reduce((prev, current) => prev + current.stock, 0);
 };
 
-export { products, addProduct, updateProduct, inStock };
+export { products, addProduct, updateProduct, inStock, findProduct };

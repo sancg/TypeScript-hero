@@ -5,6 +5,7 @@ import {
   addProduct,
   inStock,
   updateProduct,
+  findProduct,
 } from './products/product.service';
 
 for (let index = 0; index < 5; index++) {
@@ -17,15 +18,15 @@ for (let index = 0; index < 5; index++) {
 }
 
 // Creation of random products using Faker.js
-for (let prod = 0; prod < 10; prod++) {
+for (let prod = 0; prod < 20; prod++) {
   addProduct({
     title: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
     stock: faker.datatype.number(),
     color: faker.color.human(),
     price: parseFloat(faker.commerce.price(10)),
-    categoryID: 2,
-    category: faker.helpers.arrayElement(category), //category[Math.floor(Math.random() * 4)],
+    categoryID: faker.helpers.arrayElement(category).id,
+    //category: faker.helpers.arrayElement(category), //category[Math.floor(Math.random() * 4)],
     isNew: faker.datatype.boolean(),
   });
 }
@@ -36,16 +37,17 @@ console.log('\x1b[32m\n' + JSON.stringify(products, null, 2) + '\x1b[0m');
 const totalStock = inStock();
 console.log({ totalStock });
 
-// Update method;
-const indexToUpdate = products[2].id;
+/* Update method; */
+// const indexToUpdate = products[0].id;
+// const update = updateProduct(indexToUpdate, {
+//   title: 'NEW AWESOME PROD',
+//   description: faker.commerce.productDescription(),
+//   stock: faker.datatype.number({ min: 100 }),
+//   color: faker.color.human(),
+//   price: 20,
+// });
+// console.log('\x1b[32m\n' + JSON.stringify(update, null, 2));
 
-const update = updateProduct(indexToUpdate, {
-  title: 'NEW AWESOME PROD',
-  description: faker.commerce.productDescription(),
-  stock: faker.datatype.number({ min: 100 }),
-  color: faker.color.human(),
-  price: 20,
+findProduct({
+  stock: 20,
 });
-
-console.log(JSON.stringify(update, null, 2));
-console.log(JSON.stringify(products, null, 2));

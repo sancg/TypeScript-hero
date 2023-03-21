@@ -15,6 +15,7 @@ type giveParams = Pick<Product, 'id' | 'stock'>;
  *
  */
 interface UpdateProductDTO extends Partial<CreateProductDTO> {}
+interface FindProductDTO extends Readonly<Partial<Product>> {}
 
 /**
  *  The Required type is the opposite as Partial.
@@ -22,4 +23,4 @@ interface UpdateProductDTO extends Partial<CreateProductDTO> {}
  */
 interface neededProps extends Required<Product> {}
 
-export { CreateProductDTO, UpdateProductDTO };
+export { CreateProductDTO, UpdateProductDTO, FindProductDTO };
