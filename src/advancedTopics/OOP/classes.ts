@@ -1,40 +1,27 @@
 type CustomDate = {
-  year: number;
-  month: number;
-  day: number;
+  year?: number;
+  month?: number;
+  day?: number;
 };
 
 export class myDate {
-  date: CustomDate;
-  /* Access to variables */
-  private year: number;
+  /* 
+    Constructor method as indicates, is where all variables can be initialized 
+    Properties can be initialized inside the Constructor Method if it had the same name.
+  */
 
-  /* Constructor method as indicates, is where all variables can be initialized */
-  constructor(date: CustomDate) {
+  constructor(public date: CustomDate = { year: 1990, month: 1, day: 1 }) {
     this.date = date;
-    this.year = date.year;
   }
 
   /* Creating Methods */
   printFormat(): void {
-    const { year, month, day } = this.date;
-    console.log(JSON.stringify(this.date, null, 2));
+    const { year, month = 1, day = 1 } = this.date;
+    // console.log(JSON.stringify(this.date, null, 2));
+    console.log(`${year}/${month}/${day}`);
   }
 }
 
-const customDate = new myDate({ year: 2002, month: 12, day: 1 });
+const customDate = new myDate({ year: 2023, month: 4 });
 console.log(customDate.date);
 customDate.printFormat();
-
-/* Viewing accessibility errors when declaring private properties */
-class myClass {
-  private year: number;
-
-  constructor(year: number) {
-    this.year = year;
-  }
-}
-
-const useClass = new myClass(2023);
-// ❌ This would cause and accessible variable error
-//console.log(useClass.year);
